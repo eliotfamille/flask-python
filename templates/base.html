@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block titre %}Mes tâches{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{url_for('index')}}">Accueil</a>
+        <a>Taches</a>
+        <a href="{{ url_for('ajouter') }}">Ajouter</a>
+    </nav>
+    <nav>
+        <a href="{{ url_for('index', filtre='toutes') }}">Toutes</a>
+        <a href="{{ url_for('index', filtre='actives') }}">Actives</a>
+        <a href="{{ url_for('index', filtre='terminees') }}">Terminées</a>
+    </nav>
+    {% block contenu %}{% endblock %}
+    {% for msg in get_flashed_messages() %}
+    <p class="flash">{{msg}}</p>
+    {% endfor %}
+</body>
+</html>
